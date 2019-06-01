@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生个人信息</title>
+</head>
+<body>
+    <h1>学生信息列表</h1>
+    <ul>
+        {% for one_student in delete_student %}
+        <li>
+            <a>姓名:{{ one_student.sname }}-年龄:{{ one_student.age }}--性别:{{ one_student.sex }}-{{ one_student.sclass }}</a>
+
+
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

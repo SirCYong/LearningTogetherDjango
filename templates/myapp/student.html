@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生个人信息</title>
+</head>
+<body>
+    <h1>学生信息列表</h1>
+    <ul>
+        {% for one_student in student %}
+
+        <li>
+{#            {% if one_student.isDelete %}#}
+{#                isDelete = "是"#}
+{#            {% else %}#}
+{#                isDelete = "否"#}
+{#            {% endif %}#}
+{#            {% if one_student.sex %}#}
+{#                age = "男"#}
+{#            {% else %}#}
+{#                age = "女"#}
+{#            {% endif %}#}
+
+            <a>姓名:{{ one_student.sname }}-年龄:{{ one_student.age }}
+                --性别:{% if one_student.sex %} {{ '男' }} {% else %} {{ '女' }} {% endif %}
+                --是否显示：{% if one_student.isDelete %} {{ '否' }} {% else %} {{ '是' }} {% endif %}</a>
+
+{#            <a>姓名:{{ one_student.sname }}-年龄:{{ one_student.age }}--性别:{{ one_student.sex }}-班级{{ one_student.sclass }}--显示：isDelete</a>#}
+{#        <a>{{ one_student }}</a>#}
+
+
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
