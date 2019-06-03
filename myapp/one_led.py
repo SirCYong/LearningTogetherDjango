@@ -9,16 +9,16 @@ RPi.GPIO.setmode(RPi.GPIO.BCM)
 
 # 指定GPIO14（就是LED长针连接的GPIO针脚）的模式为输出模式
 # 如果上面GPIO口的选定模式指定为主板模式的话，这里就应该指定8号而不是14号。
-RPi.GPIO.setup(26, RPi.GPIO.OUT)
+RPi.GPIO.setup(5, RPi.GPIO.OUT)
 
 # 循环10次
 for i in range(0, 10):
     # 让GPIO14输出高电平（LED灯亮）
-    RPi.GPIO.output(26, True)
+    RPi.GPIO.output(5, True)
     # 持续一段时间
     time.sleep(0.5)
     # 让GPIO14输出低电平（LED灯灭）
-    RPi.GPIO.output(26, False)
+    RPi.GPIO.output(5, False)
     # 持续一段时间
     time.sleep(0.5)
 
