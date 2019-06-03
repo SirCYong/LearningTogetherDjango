@@ -7,4 +7,5 @@ while True:
     time.sleep(10)
     GPIO.output(21,GPIO.LOW)
     time.sleep(10)
+    GPIO.cleanup()
 
