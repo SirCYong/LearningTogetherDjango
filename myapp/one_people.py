@@ -9,9 +9,11 @@ driver.setmode(driver.BCM)
 
 # 指定GPIO14（就是LED长针连接的GPIO针脚）的模式为输出模式
 # 如果上面GPIO口的选定模式指定为主板模式的话，这里就应该指定8号而不是14号。
-driver.setup(23, driver.IN)
+# driver.setup(23, driver.IN)
 
 while True:
+    driver.setup(23, driver.IN)
+
     if driver.input(23):
         print("有人")
     else:
