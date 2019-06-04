@@ -27,7 +27,7 @@ while True:
     else:
         print("没人")
         driver.output(led_num, False)
-    time.sleep(0.5)
+    time.sleep(1)
     driver.cleanup()
 
 # 最后清理GPIO口（不做也可以，建议每次程序结束时清理一下，好习惯）
