@@ -19,8 +19,8 @@ while True:
     if driver.input(23):
         print("有人")
     else:
-        print("没人")
-    time.sleep(1)
+        pass
+    time.sleep(2)
     driver.cleanup()
 
 # 最后清理GPIO口（不做也可以，建议每次程序结束时清理一下，好习惯）
