@@ -15,6 +15,7 @@ while True:
     driver.setmode(driver.BCM)
 
     driver.setup(23, driver.IN)
+    print(driver.input(23))
 
     if driver.input(23):
         print("有人")
