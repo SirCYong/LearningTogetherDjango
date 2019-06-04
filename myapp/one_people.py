@@ -21,8 +21,9 @@ while True:
     driver.setup(number, driver.IN)
 
     if driver.input(number):
+
         driver.output(led_num, True)
-        continue
+        print("有人")
     else:
         print("没人")
         driver.output(led_num, False)
