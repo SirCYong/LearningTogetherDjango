@@ -15,12 +15,11 @@ while True:
     driver.setmode(driver.BCM)
 
     driver.setup(number, driver.IN)
-    print(driver.input(number))
 
     if driver.input(number):
         print("有人")
     else:
-        pass
+        print("没人")
     time.sleep(2)
     driver.cleanup()
 
