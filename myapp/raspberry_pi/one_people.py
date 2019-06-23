@@ -15,10 +15,11 @@ led_num = 23
 """
 有人灯就亮 2s 没人 就关灯
 """
+driver.setmode(driver.BCM)
+driver.setup(led_num, driver.OUT)
+driver.setup(number, driver.IN)
+i = 0
 while True:
-    driver.setmode(driver.BCM)
-    driver.setup(led_num, driver.OUT)
-    driver.setup(number, driver.IN)
 
     if driver.input(number):
 
@@ -28,7 +29,10 @@ while True:
         print("没人")
         driver.output(led_num, False)
     time.sleep(1)
-    driver.cleanup()
+    i += 1
+    if i >= 100:
+        break
+driver.cleanup()
 
 # 最后清理GPIO口（不做也可以，建议每次程序结束时清理一下，好习惯）
 

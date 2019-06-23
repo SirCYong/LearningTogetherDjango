@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -19,6 +21,18 @@ def myapp_class(request, **kwargs):
     class_list = Class.objects.all()
     # 将数据传递给模板，，，模板渲染页面 然后 返回给浏览器
     return render(request, 'myapp/class.html', {'Class': class_list})
+
+
+def student_info(request, **kwargs):
+    print(kwargs)
+    # user_id = int(kwargs['user_id'])
+    user_id = kwargs['user_id']
+
+    # user_id = int(user_id)
+    one_student_info = Student.objects.get(id=user_id)
+    print(one_student_info)
+    print(type(one_student_info))
+    return render(request, 'myapp/student_info.html', {'student_info': one_student_info})
 
 
 def myapp_student(request):
@@ -61,4 +75,14 @@ def student_page(request, page):
     limit = 5
     student = Student.objects.all()[(page-1)*limit: page*limit]
     return render(request, 'myapp/student.html', {'student': student})
+
+
+def hello_world(request, **kwargs):
+    print(kwargs)
+    if 'num' in kwargs.keys():
+        resp = {'code': 1000, 'detail': 'success! hello'}
+    else:
+        resp = {'code': 2100, 'detail': 'fail'}
+
+    return HttpResponse(json.dumps(resp), content_type="application/json")
 

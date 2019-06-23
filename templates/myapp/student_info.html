@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ student_info.sname }}</title>
 </head>
 <body>
+    <h1>
+        <a>姓名：{{ student_info.sname }}</a>
+            <br/>
+        <a>性别：{% if student_info.sex %}{{ '男' }}{% else %}{{ '女' }}{% endif %}</a>
+            <br/>
+        <a>简介: {{ student_info.scontend }}</a>
+
+    </h1>
 
 </body>
 </html>
