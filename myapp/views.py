@@ -73,16 +73,120 @@ def add_student(request):
 def student_page(request, page):
     page = int(page)
     limit = 5
-    student = Student.objects.all()[(page-1)*limit: page*limit]
+    student = Student.objects.all()[(page - 1) * limit: page * limit]
     return render(request, 'myapp/student.html', {'student': student})
 
 
-def hello_world(request, **kwargs):
-    print(kwargs)
-    if 'num' in kwargs.keys():
+def hello_world(request):
+    print(type(request))
+    print(request)
+    print('get:', request.GET)
+
+    if request.GET.get('num', False) :
         resp = {'code': 1000, 'detail': 'success! hello'}
     else:
         resp = {'code': 2100, 'detail': 'fail'}
 
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
+
+def attribute(request):
+    """查看他们的属性"""
+    print("path:", request.path)
+    print('method:', request.method)
+    print('encoding:', request.encoding)
+    print('get:', request.GET)
+    print('post:', request.POST)
+    print('cookies:', request.COOKIES)
+    print('session:', request.session)
+    print('files:', request.FILES)
+    return HttpResponse('attribute')
+
+
+def attribute_get1(request):
+    """查看他们的属性"""
+    a = request.GET['a']
+    b = request.GET.get('b')
+    c = request.GET['c']
+    print("path:", request.path)
+    print('method:', request.method)
+    print('encoding:', request.encoding)
+    print('get:', request.GET)
+    print('post:', request.POST)
+    print('cookies:', request.COOKIES)
+    print('session:', request.session)
+    print('files:', request.FILES)
+    return HttpResponse("a:{a}\nb:{b}\nc:{c}".format(a=a, b=b, c=c))
+
+
+def attribute_get2(request):
+    """查看他们的属性"""
+    a = request.GET.getlist('a')
+    b = request.GET.getlist('b')
+    c = request.GET.getlist('c')
+    print("path:", request.path)
+    print('method:', request.method)
+    print('encoding:', request.encoding)
+    print('get:', request.GET)
+    print('post:', request.POST)
+    print('cookies:', request.COOKIES)
+    print('session:', request.session)
+    print('files:', request.FILES)
+    return HttpResponse("a:{a}\nb:{b}\nc:{c}".format(a=a, b=b, c=c))
+
+
+def show_register(request):
+    return render(request, 'myapp/register.html')
+
+
+def register(request):
+    name = request.POST['name']
+    age = request.POST['age']
+    sex = request.POST['sex']
+    bobby = request.POST.getlist('bobby')
+    info = {
+        'name': name,
+        'age': age,
+        'sex': sex,
+        'hobby': bobby,
+        'code': 1000
+    }
+    return HttpResponse(json.dumps(info), content_type='application/json')
+
+
+def show_response(request):
+    result = HttpResponse()
+    result.content = b'good'
+    print(result.charset)
+    print(result.content)
+    print(result.status_code)
+    return result
+
+
+def show_cookie(request):
+    """设置cookie"""
+    res = HttpResponse()
+    # cookie = request.COOKIES
+    # res.write("<h2>{}</h2>".format(cookie['sid']))
+    res.delete_cookie('sid')  # 删除 cookie
+    # res.set_cookie('sid', 'WSEGSLIF87665DFWS0j')
+    return res
+
+
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+
+
+# 重定向
+def show_redirect1(request):
+    """url 配置 这个 但是 跳转到下面的一个"""
+    return HttpResponseRedirect('/show_redirect2')
+    # return redirect('/show_redirect2')
+
+
+def show_redirect2(request):
+    data = {
+        'code': 1000,
+        'status': 1
+    }
+    return HttpResponse(json.dumps(data))
